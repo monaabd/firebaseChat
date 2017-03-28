@@ -29,19 +29,34 @@
       window.addEventListener('load',function(){
          
           
+          
         let input= document.getElementById('userInput'); 
         let loginButton= document.getElementById('loginButton'); 
         let logoutButton= document.getElementById('logoutButton'); 
         let message= document.getElementById('message'); 
         let sendButton= document.getElementById('sendButton'); 
+         let displayAll=document.getElementById("displayAll");
+         let list =document.getElementById("list"); 
+         
+           var currentTime = new Date(),
+          hours = currentTime.getHours(),
+          minutes = currentTime.getMinutes();
+            if (minutes < 10) {
+	             minutes = "0" + minutes;
+             }              
+    
           
         sendButton.addEventListener('click',function(event){
+            
+            displayAll.innerHTML="";
             let userName= input.value;
             let chatMessage= message.value;
     //access to database        
-             firebase.database().ref('username/' + userName).set({ 
+             firebase.database().ref('username/').push({ 
                  name: userName,
-                 chatMessage: chatMessage    })
+                 chatMessage: chatMessage,  
+                 time: hours + ":" + minutes +"" 
+                   })
               //time properties
              chatMessage= "";
         });//sendButton eventlistenter
@@ -55,8 +70,11 @@
                  let dataObject = snapshot.val();
                    for(let i in dataObject) {
                        console.log(dataObject[i].message);
-                      var div = document.createElement('div');
-                       div.innerHTML = dataObject[i].chatMessage + ", " + dataObject[i].name; 
+                       let li= document.createElement('li');
+                       li.innerHTML=dataObject[i].chatMessage + ", " + dataObject[i].name;
+                       dataObject[i].time;
+                       list.appendChild(li);
+                       displayAll.insertBefore(li,displayAll.firstChild);
                        
                    }
               }) ;//firebase function value
@@ -69,6 +87,8 @@
         body{
             background-image: url("chat.jpg")
         }
+        #displayAll{ background-color: azure ;
+        width: 140px}
         #userInput{background-color: aqua }
         #message { background-color: aqua
                 }
@@ -87,6 +107,9 @@
         <br>
         <input id="message" type="text" placeholder="Write  Your Message">
         <button id="sendButton">Send  Message</button>
+            <div id="displayAll"> 
+            <ul id="list"> </ul>
+            </div>
         </div>
         
 

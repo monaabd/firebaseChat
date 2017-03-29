@@ -10,7 +10,7 @@
        
     
    <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
-<script>
+  <script>
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCs0wOU6IM-XhsqznkRxKcwHH2Lb4e_8AE",
@@ -19,18 +19,7 @@
     storageBucket: "authenticationfirebase-29b5f.appspot.com",
     messagingSenderId: "182254615169"
   };
-    
-  firebase.initializeApp(config);
-    let provider = new firebase.auth.GithubAuthProvider();
-
- firebase.auth().signInWithPopup(provider)
- .then(function(result) {
-    // Om autentisering lyckas, så finns användarinfo i user
-    
-    let user = result.user;
-     console.log(user.email);
-     
-});
+  
 
 </script>
         
@@ -43,17 +32,26 @@
         let input= document.getElementById('userInput'); 
         let loginButton= document.getElementById('loginButton'); 
         
-          
- // below is for firebase changes..
-          
           loginButton.addEventListener('click',function(event){
-              firebase.database().ref('username/').on('value',function(snapshot){
+         
+          firebase.initializeApp(config);
+         
+         let provider = new firebase.auth.GithubAuthProvider();
+
+          firebase.auth().signInWithPopup(provider).then(function(result) {
+            // Om autentisering lyckas, så finns användarinfo i user
+
+            let user = result.user;
+            console.log(user);
+            console.log(user.email);         
+});//firebase Auth
+              
+              firebase.database().ref('username/').set('value',function(snapshot){
                   
                  let dataObject = snapshot.val();
                    for(let i in dataObject) {
                        console.log(dataObject[i].message);
-                      var div = document.createElement('div');
-                       div.innerHTML = dataObject[i].chatMessage + ", " + dataObject[i].name; 
+                       dataObject[i].name; 
                        
                    }
               }) ;//firebase function value

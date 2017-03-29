@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Firebase- Chat sidan</title>
         <meta name="description" content="En interaktiv genomgång av Brackets.">
-        <link rel="stylesheet" href="main.css">
+    
     
     <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
     <script>
@@ -30,15 +30,15 @@
          
           
           
-        let input= document.getElementById('userInput'); 
+        var input= document.getElementById('userInput'); 
         let loginButton= document.getElementById('loginButton'); 
         let logoutButton= document.getElementById('logoutButton'); 
         let message= document.getElementById('message'); 
         let sendButton= document.getElementById('sendButton'); 
-         let displayAll=document.getElementById("displayAll");
+        let displayAll=document.getElementById("displayAll");
          let list =document.getElementById("list"); 
          
-           var currentTime = new Date(),
+          var currentTime = new Date(),
           hours = currentTime.getHours(),
           minutes = currentTime.getMinutes();
             if (minutes < 10) {
@@ -57,7 +57,7 @@
                  chatMessage: chatMessage,  
                  time: hours + ":" + minutes +"" 
                    })
-              //time properties
+              
              chatMessage= "";
         });//sendButton eventlistenter
          
@@ -69,29 +69,53 @@
                   
                  let dataObject = snapshot.val();
                    for(let i in dataObject) {
-                       console.log(dataObject[i].message);
+                       //console.log(dataObject[i].message);
                        let li= document.createElement('li');
-                       li.innerHTML=dataObject[i].chatMessage + ", " + dataObject[i].name;
-                       dataObject[i].time;
+                       li.innerHTML= " From: " + dataObject[i].name + "  , Message: " + dataObject[i].chatMessage +  "  , At:  "  + dataObject[i].time;
+                       
                        list.appendChild(li);
                        displayAll.insertBefore(li,displayAll.firstChild);
+                       //display other buttons
+                       logoutButton.style.display="inline";
+                       loginButton.style.display="none";
                        
                    }
               }) ;//firebase function value
               
           });//login button event
+          
+          logoutButton.addEventListener('click',function(event){
+             
+             window.location.reload();
+              logoutButton.style.display="none";
+          })//logout event
      }) ;//windows load             
     </script>
         
     <style>
         body{
-            background-image: url("chat.jpg")
+            background: url("chat.jpg") no-repeat ;
+            -webkit-background-size: cover;
+              -moz-background-size: cover;
+              -o-background-size: cover;
+              background-size: cover;
         }
         #displayAll{ background-color: azure ;
-        width: 140px}
+                   width: 340px}
         #userInput{background-color: aqua }
         #message { background-color: aqua
                 }
+        #logoutButton {
+            background-color: fuchsia;
+            font-size:20px ;
+            
+        }
+        #sendButton {
+             font-size:18px ;
+        }
+        #loginButton {
+             font-size:20px ;
+        }
     </style>
 </head>        
     <body>
@@ -102,14 +126,17 @@
         <button id="loginButton"> Login</button>
         <br>
         <br>    
-        <button id="logoutButton"> Log Out</button>
-        <br>
         <br>
         <input id="message" type="text" placeholder="Write  Your Message">
         <button id="sendButton">Send  Message</button>
+        <br>
+        <br>    
             <div id="displayAll"> 
             <ul id="list"> </ul>
             </div>
+        <br>    
+        <button id="logoutButton"> Log Out</button>
+        <br>    
         </div>
         
 

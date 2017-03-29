@@ -46,15 +46,15 @@
             console.log(user.email);         
 });//firebase Auth
               
-              firebase.database().ref('username/').set('value',function(snapshot){
+           //   firebase.database().ref('username/').set('value',function(snapshot){
                   
-                 let dataObject = snapshot.val();
-                   for(let i in dataObject) {
-                       console.log(dataObject[i].message);
-                       dataObject[i].name; 
+           //      let dataObject = snapshot.val();
+             //      for(let i in dataObject) {
+           //            console.log(dataObject[i].message);
+           //            dataObject[i].name; 
                        
-                   }
-              }) ;//firebase function value
+            //       }
+           //   }) ;//firebase function value
               
           });//login button event
      }) ;//windows load             

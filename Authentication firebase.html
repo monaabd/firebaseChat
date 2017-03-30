@@ -37,7 +37,7 @@
         let title =document.getElementById('title');
         firebase.initializeApp(config);
         loginButton.addEventListener('click',function(event){
-         
+         authorizedUser.disabled = true;
           //firebase.initializeApp(config);
          
          let provider = new firebase.auth.GithubAuthProvider();
@@ -59,6 +59,7 @@
             authorizedUser.disabled = false;  // stänger av ett klickbart element
               
                } 
+            
              
               
               });//firebase Auth
@@ -71,7 +72,7 @@
             firebase.auth().signOut().then(function(result) {
                 // Utloggning lyckades
              
-             authorizedUser.disabled = true;  // slår på ett avstängt element
+             
                 
               logoutButton.style.display="none";
               loginButton.style.display= "inline";

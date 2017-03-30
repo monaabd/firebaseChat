@@ -32,7 +32,7 @@
         let input= document.getElementById('userInput'); 
         let loginButton= document.getElementById('loginButton'); 
         let logoutButton= document.getElementById('logoutButton');
-          
+        let logOutText =document.getElementById('logOutText');  
         firebase.initializeApp(config);
         loginButton.addEventListener('click',function(event){
          
@@ -48,19 +48,17 @@
             console.log(user.email);
             
               input.value= user.email; 
+              loginButton.style.display= "none";
+              logoutButton.style.display="inline";
 });//firebase Auth
-            
-           //   firebase.database().ref('username/').set('value',function(snapshot){
-                  
-           //      let dataObject = snapshot.val();
-             //      for(let i in dataObject) {
-           //            console.log(dataObject[i].message);
-           //            dataObject[i].name; 
-                       
-            //     }
-           //   }) ;//firebase function value
-              
-          });//login button event
+            });//login button event
+          
+          logoutButton.addEventListener('click',function(event){
+              window.location.reload(); // reload back all 
+              logoutButton.style.display="none";
+              logOutText.innerHTML= "You are logged out ! "
+            });//logout event
+          
      }) ;//windows load             
     </script>
         
@@ -71,6 +69,10 @@
         #userInput{background-color: aqua }
         #message { background-color: aqua
                 }
+        #logOutText { border: 10px;
+                      background-color:aqua;
+                      width: 180px;
+        }
     </style>
     </head>        
     <body>
@@ -78,10 +80,11 @@
         <div>
         <input type="text" id="userInput" placeholder="User Name" value="mm"/>
             
-        <button id="loginButton"> Login</button>
+       <button id="loginButton"> Login</button>
         <br>
          <br>    
-        <button id="logoutButton"> Log Out</button>
+           <div id="logOutText"></div> <button id="logoutButton"> Log Out</button>
+            </div>   
         <br>    
         
 

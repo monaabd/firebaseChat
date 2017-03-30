@@ -55,9 +55,10 @@
               loginButton.style.display= "none";
               logoutButton.style.display="inline";
               
-          
+          if(authorizedUser==="abd.mona@hotmail.com"){
             authorizedUser.disabled = false;  // stänger av ett klickbart element
-               
+              
+               } 
              
               
               });//firebase Auth
@@ -104,7 +105,7 @@
     
     <body>
         
-        <h1 style=color:pink;> Firebase-Authentication </h1>
+        <h1 style=color:pink;> Firebase-Authentication :You are not logged in</h1>
         <div>
         <div id="userInfo"> </div>
             

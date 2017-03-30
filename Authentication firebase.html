@@ -47,7 +47,7 @@
             var user = result.user;
             console.log(user);
             console.log(user.email);
-             let img = user.img.photoURL;
+             let img = user.photoURL;
              //<img src="">
               userInfo.innerHTML= `Welcome you are logged in with: ${user.email} <img src="${img}">`; 
               loginButton.style.display= "none";

@@ -46,7 +46,7 @@
             var user = result.user;
             console.log(user);
             console.log(user.email);
-            
+              
               input.value= user.email; 
               loginButton.style.display= "none";
               logoutButton.style.display="inline";
@@ -55,10 +55,22 @@
           
           logoutButton.addEventListener('click',function(event){
              // window.location.reload(); // reload back all 
-              
+             // Logga ut den autentiserade användaren
+            firebase.auth().signOut().then(function(result) {
+                // Utloggning lyckades
+                
               logoutButton.style.display="none";
               loginButton.style.display= "inline";
               logOutText.innerHTML= "You are logged out ! ";
+              input.value="";
+              console.log("");
+            })
+            .catch(function(error) {
+                // Utloggning misslyckades
+                console.log("Logout failed !")
+            });
+
+              
               
             });//logout event
           

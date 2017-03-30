@@ -31,10 +31,10 @@
           
         let input= document.getElementById('userInput'); 
         let loginButton= document.getElementById('loginButton'); 
-        
+        firebase.initializeApp(config);
           loginButton.addEventListener('click',function(event){
          
-          firebase.initializeApp(config);
+          //firebase.initializeApp(config);
          
          let provider = new firebase.auth.GithubAuthProvider();
 
@@ -42,8 +42,10 @@
             // Om autentisering lyckas, så finns användarinfo i user
 
             let user = result.user;
+            input.innerHTML=user;  
             console.log(user);
-            console.log(user.email);         
+            console.log(user.email);
+              
 });//firebase Auth
               
            //   firebase.database().ref('username/').set('value',function(snapshot){
@@ -53,7 +55,7 @@
            //            console.log(dataObject[i].message);
            //            dataObject[i].name; 
                        
-            //       }
+            //     }
            //   }) ;//firebase function value
               
           });//login button event

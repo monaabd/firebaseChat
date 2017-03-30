@@ -33,6 +33,7 @@
         let loginButton= document.getElementById('loginButton'); 
         let logoutButton= document.getElementById('logoutButton');
         let logOutText =document.getElementById('logOutText');  
+        
         firebase.initializeApp(config);
         loginButton.addEventListener('click',function(event){
          
@@ -47,7 +48,7 @@
             console.log(user);
             console.log(user.email);
               
-              div.innerHTML= " Welcome you are logged in with: "+ user.email + " "+ user.photoURL; 
+              userInfo.innerHTML= " Welcome you are logged in with: "+ user.email + " + " + user.photoURL; 
               loginButton.style.display= "none";
               logoutButton.style.display="inline";
               });//firebase Auth
@@ -62,8 +63,8 @@
               logoutButton.style.display="none";
               loginButton.style.display= "inline";
               logOutText.innerHTML= "You are logged out ! ";
-              input.value="";
-              console.log("");
+              userInfo.innerHTML="";
+              console.log("logged out");
             })
             .catch(function(error) {
                 // Utloggning misslyckades
@@ -93,11 +94,11 @@
         <div>
         <div id="userInfo"> </div>
             
-       <button id="loginButton"> Login</button>
+        <button id="loginButton"> Login</button>
         <br>
          <br>    
            <div id="logOutText"></div> <button id="logoutButton"> Log Out</button>
-            </div>   
+       </div>   
         <br>    
         
 

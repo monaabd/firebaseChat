@@ -29,7 +29,7 @@
       window.addEventListener('load',function(){
          
           
-        let input= document.getElementById('userInput'); 
+        let userInfo= document.getElementById('userInfo'); 
         let loginButton= document.getElementById('loginButton'); 
         let logoutButton= document.getElementById('logoutButton');
         let logOutText =document.getElementById('logOutText');  
@@ -47,10 +47,10 @@
             console.log(user);
             console.log(user.email);
               
-              input.value= user.email; 
+              div.innerHTML= " Welcome you are logged in with: "+ user.email + " "+ user.photoURL; 
               loginButton.style.display= "none";
               logoutButton.style.display="inline";
-});//firebase Auth
+              });//firebase Auth
             });//login button event
           
           logoutButton.addEventListener('click',function(event){
@@ -79,7 +79,7 @@
         body{
             background-image: 
         }
-        #userInput{background-color: aqua }
+        #userInfo{background-color: aqua }
         #message { background-color: aqua
                 }
         #logOutText { border-bottom: 10px;
@@ -91,7 +91,7 @@
     <body>
         <h1 style=color:pink;> Firebase-Authentication </h1>
         <div>
-        <input type="text" id="userInput" placeholder="User Name" value=""/>
+        <div id="userInfo"> </div>
             
        <button id="loginButton"> Login</button>
         <br>

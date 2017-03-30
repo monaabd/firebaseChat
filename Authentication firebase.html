@@ -44,12 +44,12 @@
             // Om autentisering lyckas, så finns användarinfo i user
 
             var user = result.user;
-            input.innerHTML= user.email;  
             console.log(user);
             console.log(user.email);
+            // input.innerHTML= user.email; 
               
 });//firebase Auth
-            
+            input.innerHTML= user.email; 
            //   firebase.database().ref('username/').set('value',function(snapshot){
                   
            //      let dataObject = snapshot.val();

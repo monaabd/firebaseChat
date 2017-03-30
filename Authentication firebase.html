@@ -62,7 +62,7 @@
              
               
               });//firebase Auth
-            title.innerHTML="Welcom !"
+            title.innerHTML= "Welcom !"
             });//login button event
           
           logoutButton.addEventListener('click',function(event){
@@ -83,7 +83,7 @@
                 // Utloggning misslyckades
                 console.log("Logout failed !")
             });
-
+             title.innerHTML= "Logged Out !"
             });//logout event
           
      }) ;//windows load             
@@ -93,20 +93,20 @@
         body{
             background-image: 
         }
+        #title { color:pink}
         #userInfo{background-color: aqua }
         #message { background-color: aqua
                 }
         #logOutText { border-bottom: 10px;
                       background-color:aqua;
                       width: 180px;
-        
-        }
+            }
     </style>
     </head>       
     
     <body>
         
-        <h1 id="title" style=color:pink;> Firebase-Authentication :You are not logged in</h1>
+        <h1 id="title" > Firebase-Authentication :You are not logged in</h1>
         <div>
         <div id="userInfo"> </div>
             

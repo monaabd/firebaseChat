@@ -49,7 +49,8 @@
             console.log(user.email);
              let img = user.photoURL;
              //<img src="">
-              userInfo.innerHTML= `Welcome you are logged in with: ${user.email} <img src="${img}">`; 
+              userInfo.innerHTML= `Welcome you are logged in with: ${user.email} <img width=50 src="${img}">`; 
+              // you could do creatElement for img but in code up u just add tag u can not do much with it
               loginButton.style.display= "none";
               logoutButton.style.display="inline";
               });//firebase Auth
@@ -87,6 +88,7 @@
         #logOutText { border-bottom: 10px;
                       background-color:aqua;
                       width: 180px;
+        
         }
     </style>
     </head>        

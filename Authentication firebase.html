@@ -36,8 +36,10 @@
         let logOutText =document.getElementById('logOutText');  
         let title =document.getElementById('title');
         firebase.initializeApp(config);
-        loginButton.addEventListener('click',function(event){
          authorizedUser.disabled = true;
+          
+        loginButton.addEventListener('click',function(event){
+         
           //firebase.initializeApp(config);
          
          let provider = new firebase.auth.GithubAuthProvider();
@@ -84,7 +86,7 @@
                 // Utloggning misslyckades
                 console.log("Logout failed !")
             });
-              authorizedUser.disabled = true;
+              
              title.innerHTML= "Logged Out !"
             });//logout event
           

@@ -58,9 +58,7 @@
             if(authorizedUser===user){
             authorizedUser.disabled = true;  // stänger av ett klickbart element
             } 
-              else{
-             authorizedUser.disabled = false;  // slår på ett avstängt element
-              }
+             
               
               });//firebase Auth
             });//login button event
@@ -70,6 +68,8 @@
              // Logga ut den autentiserade användaren
             firebase.auth().signOut().then(function(result) {
                 // Utloggning lyckades
+             
+             authorizedUser.disabled = false;  // slår på ett avstängt element
                 
               logoutButton.style.display="none";
               loginButton.style.display= "inline";

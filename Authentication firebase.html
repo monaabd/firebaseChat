@@ -46,10 +46,10 @@
             var user = result.user;
             console.log(user);
             console.log(user.email);
-            // input.innerHTML= user.email; 
-              
+            
+              input.value= user.email; 
 });//firebase Auth
-            input.innerHTML= user.email; 
+            
            //   firebase.database().ref('username/').set('value',function(snapshot){
                   
            //      let dataObject = snapshot.val();
@@ -76,7 +76,7 @@
     <body>
         <h1 style=color:pink;> Firebase-Authentication </h1>
         <div>
-        <input type="text" id="userInput" placeholder="User Name">
+        <input type="text" id="userInput" placeholder="User Name" value="mm"/>
             
         <button id="loginButton"> Login</button>
         <br>

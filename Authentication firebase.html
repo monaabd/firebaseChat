@@ -31,6 +31,7 @@
           
         let userInfo= document.getElementById('userInfo'); 
         let loginButton= document.getElementById('loginButton'); 
+        let authorizedUser = document.getElementById('authorizedUser') ; 
         let logoutButton= document.getElementById('logoutButton');
         let logOutText =document.getElementById('logOutText');  
         
@@ -53,6 +54,13 @@
               // you could do creatElement for img but in code up u just add tag u can not do much with it
               loginButton.style.display= "none";
               logoutButton.style.display="inline";
+              
+            if(authorizedUser===user){
+            authorizedUser.disabled = true;  // stänger av ett klickbart element
+            } 
+              else{
+             authorizedUser.disabled = false;  // slår på ett avstängt element
+              }
               });//firebase Auth
             });//login button event
           
@@ -91,19 +99,23 @@
         
         }
     </style>
-    </head>        
+    </head>       
+    
     <body>
+        
         <h1 style=color:pink;> Firebase-Authentication </h1>
         <div>
         <div id="userInfo"> </div>
             
         <button id="loginButton"> Login</button>
-        <br>
-         <br>    
-           <div id="logOutText"></div> <button id="logoutButton"> Log Out</button>
+         <br>
+         <br> 
+            
+        <button id="authorizedUser"> Authorized User </button> 
+             <br>
+              <br>
+        <div id="logOutText"></div> <button id="logoutButton"> Log Out</button>
        </div>   
-        <br>    
-        
-
+           
     </body>
  </html>

@@ -56,10 +56,10 @@
               logoutButton.style.display="inline";
               
             if(authorizedUser===user){
-            authorizedUser.disabled = true;  // stänger av ett klickbart element
+            authorizedUser.disabled = false;  // stänger av ett klickbart element
             } 
               else{
-             authorizedUser.disabled = false;  // slår på ett avstängt element
+             authorizedUser.disabled = true;  // slår på ett avstängt element
               }
               });//firebase Auth
             });//login button event

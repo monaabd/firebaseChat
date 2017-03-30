@@ -47,8 +47,9 @@
             var user = result.user;
             console.log(user);
             console.log(user.email);
-              
-              userInfo.innerHTML= " Welcome you are logged in with: " + user.email + "  , "  + user.img.src.photoURL ; 
+             let img = user.img.photoURL;
+             //<img src="">
+              userInfo.innerHTML= `Welcome you are logged in with: ${user.email} <img src="${img}">`; 
               loginButton.style.display= "none";
               logoutButton.style.display="inline";
               });//firebase Auth

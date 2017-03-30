@@ -54,9 +54,9 @@
             });//login button event
           
           logoutButton.addEventListener('click',function(event){
-              window.location.reload(); // reload back all 
+             // window.location.reload(); // reload back all 
               logoutButton.style.display="none";
-              //loginButton.style.display= "none";
+              loginButton.style.display= "inline";
               logOutText.innerHTML= "You are logged out ! ";
               
             });//logout event
@@ -71,7 +71,7 @@
         #userInput{background-color: aqua }
         #message { background-color: aqua
                 }
-        #logOutText { border: 10px;
+        #logOutText { border-bottom: 10px;
                       background-color:aqua;
                       width: 180px;
         }
@@ -80,7 +80,7 @@
     <body>
         <h1 style=color:pink;> Firebase-Authentication </h1>
         <div>
-        <input type="text" id="userInput" placeholder="User Name" value="mm"/>
+        <input type="text" id="userInput" placeholder="User Name" value=""/>
             
        <button id="loginButton"> Login</button>
         <br>

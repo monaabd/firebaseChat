@@ -56,7 +56,7 @@
               logoutButton.style.display="inline";
               
           
-            authorizedUser.disabled = true;  // stänger av ett klickbart element
+            authorizedUser.disabled = false;  // stänger av ett klickbart element
                
              
               
@@ -69,7 +69,7 @@
             firebase.auth().signOut().then(function(result) {
                 // Utloggning lyckades
              
-             authorizedUser.disabled = false;  // slår på ett avstängt element
+             authorizedUser.disabled = true;  // slår på ett avstängt element
                 
               logoutButton.style.display="none";
               loginButton.style.display= "inline";

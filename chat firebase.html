@@ -43,8 +43,8 @@
         let sortName =document.getElementById('sortName'); 
         let sortDate =document.getElementById('sortDate');
         let sortMessage =document.getElementById('sortMessage');
-        let sortedMessage =document.getElementById('sortedMessage');
-          
+        let sortedDiv =document.getElementById('sortedDiv');
+        let sortedlist= document.getElementById('sortedlist'); 
           
       //*******************************************************    
           var currentTime = new Date(),
@@ -79,6 +79,8 @@
                   
            //*******************************************       
                  let dataObject = snapshot.val();
+                  //console.log(dataObject);
+                  
                    for(let i in dataObject) {
                        //console.log(dataObject[i].message);
                        let li= document.createElement('li');
@@ -110,12 +112,37 @@
                  db.ref('username/').orderByChild('name').on('value', function(snapshot) {
                // snapshot.val();  // VARNING! Behåller inte sorteringen
                 snapshot.forEach( child => {
-                    let objekt = child.val();  // objekten kommer i ordning
-                    sortedMessage.innerHTML=db.name;
+                let objekt = child.val();  // objekten kommer i ordning
+                  //  console.log(objekt);
+                     
+                       let li= document.createElement('li'); 
+                        li.innerHTML= " From: " + objekt.name ;
+                        sortedlist.appendChild(li);  
+                         sortedDiv.appendChild(li);
+                        
                 })
             });
    
           });//sort name event listener
+          
+          
+           sortMessage.addEventListener('click',function(event){ 
+               
+               let db = firebase.database();
+               
+                 db.ref('username/').orderByChild('chatMessage').on('value', function(snapshot) {
+               // snapshot.val();  // VARNING! Behåller inte sorteringen
+                snapshot.forEach( child => {
+                let objekt = child.val();  // objekten kommer i ordning
+                  //  console.log(objekt);
+                  let li = document.creatElement('li');
+                    li.innerHTML= "Messages sorted as" +objekt.chatMessage;
+                     sortedlist.appendChild(li);
+                    sortedDiv.appendChild(li);
+                })
+               })
+               
+           });//sortMessage event
     
           
      }) ;//windows load             
@@ -145,11 +172,11 @@
         #loginButton {
              font-size:20px ;
         }
-        #sortedMessage { background-color: aliceblue}
+        #sortedDiv { background-color: aliceblue}
     </style>
 </head>        
     <body>
-        <h1 style=color:pink;> Let's Chat and Enjoy</h2>
+        <h1 style=color:pink;> Let's Chat and Enjoy</h1>
         <div>
         <input type="text" id="userInput" placeholder="User Name">
             
@@ -172,8 +199,10 @@
         <button id="sortName"> Sender's Name</button>   
         <button id="sortDate"> Sort time/Date</button> 
         <button id="sortMessage"> Sort Message</button> 
-        <div id="sortedMessage"> </div> 
+        <br>
             
+        <div id="sortedDiv"> </div> 
+          <ul id="sortedlist"> </ul>  
         </div>
         
 

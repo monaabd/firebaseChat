@@ -43,7 +43,7 @@
         let sortName =document.getElementById('sortName'); 
         let sortDate =document.getElementById('sortDate');
         let sortMessage =document.getElementById('sortMessage');
-          
+        let sortedMessage =document.getElementById('sortedMessage');
           
           
       //*******************************************************    
@@ -111,7 +111,8 @@
                // snapshot.val();  // VARNING! Behåller inte sorteringen
                 snapshot.forEach( child => {
                     let objekt = child.val();  // objekten kommer i ordning
-                }
+                    sortedMessage.innerHTML=db.name;
+                })
             });
    
           });//sort name event listener
@@ -144,6 +145,7 @@
         #loginButton {
              font-size:20px ;
         }
+        #sortedMessage { background-color: aliceblue}
     </style>
 </head>        
     <body>
@@ -167,10 +169,11 @@
         <br>
         <br>  
         <br>    
-            <button id="sortName"> Sender's Name</button>   
-            <button id="sortDate"> Sort time/Date</button> 
-            <button id="sortMessage"> Sort Message</button> 
-             
+        <button id="sortName"> Sender's Name</button>   
+        <button id="sortDate"> Sort time/Date</button> 
+        <button id="sortMessage"> Sort Message</button> 
+        <div id="sortedMessage"> </div> 
+            
         </div>
         
 

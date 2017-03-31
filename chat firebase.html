@@ -37,7 +37,16 @@
         let sendButton= document.getElementById('sendButton'); 
         let displayAll=document.getElementById("displayAll");
          let list =document.getElementById("list"); 
-         
+        // *************************************************
+          //Firebase sortering project
+          
+        let sortName =document.getElementById('sortName'); 
+        let sortDate =document.getElementById('sortDate');
+        let sortMessage =document.getElementById('sortMessage');
+          
+          
+          
+      //*******************************************************    
           var currentTime = new Date(),
           hours = currentTime.getHours(),
           minutes = currentTime.getMinutes();
@@ -45,13 +54,13 @@
 	             minutes = "0" + minutes;
              }              
     
-          
         sendButton.addEventListener('click',function(event){
             
             displayAll.innerHTML="";
             let userName= input.value;
             let chatMessage= message.value;
-    //access to database        
+    //access to database  
+            
              firebase.database().ref('username/').push({ 
                  name: userName,
                  chatMessage: chatMessage,  
@@ -66,7 +75,9 @@
           
           loginButton.addEventListener('click',function(event){
               firebase.database().ref('username/').on('value',function(snapshot){
+          //******** firebase sorting
                   
+           //*******************************************       
                  let dataObject = snapshot.val();
                    for(let i in dataObject) {
                        //console.log(dataObject[i].message);
@@ -78,6 +89,9 @@
                        //display other buttons
                        logoutButton.style.display="inline";
                        loginButton.style.display="none";
+                       //////////////////////////////////
+                      //Utlämning4  
+                       // 3 knappaer ska hittas när vi logga ni 
                        
                    }
               }) ;//firebase function value
@@ -89,6 +103,20 @@
              window.location.reload();
               logoutButton.style.display="none";
           })//logout event
+                      
+          sortName.addEventListener('click',function(event){
+              
+                 let db = firebase.database();
+                 db.ref('username/').orderByChild('name').on('value', function(snapshot) {
+               // snapshot.val();  // VARNING! Behåller inte sorteringen
+                snapshot.forEach( child => {
+                    let objekt = child.val();  // objekten kommer i ordning
+                }
+            });
+   
+          });//sort name event listener
+    
+          
      }) ;//windows load             
     </script>
         
@@ -136,7 +164,13 @@
             </div>
         <br>    
         <button id="logoutButton"> Log Out</button>
+        <br>
+        <br>  
         <br>    
+            <button id="sortName"> Sender's Name</button>   
+            <button id="sortDate"> Sort time/Date</button> 
+            <button id="sortMessage"> Sort Message</button> 
+             
         </div>
         
 

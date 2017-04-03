@@ -41,7 +41,7 @@
           //Firebase sortering project
           
         let sortName =document.getElementById('sortName'); 
-        let sortDate =document.getElementById('sortDate');
+        let sortTime =document.getElementById('sortDate');
         let sortMessage =document.getElementById('sortMessage');
         let sortedDiv =document.getElementById('sortedDiv');
         let sortedlist= document.getElementById('sortedlist'); 
@@ -118,14 +118,31 @@
                        let li= document.createElement('li'); 
                         li.innerHTML= " From: " + objekt.name ;
                    
-                       // sortedlist.appendChild(li);  
-                        sortedDiv.appendChild(li);
+                        sortedlist.appendChild(li);  
+                        //sortedDiv.appendChild(li);
                         
                 })
             });
    
           });//sort name event listener
           
+           sortTime.addEventListener('click',function(event){ 
+               
+               let db = firebase.database();
+               
+                 db.ref('username/').orderByChild('time').on('value', function(snapshot) {
+               // snapshot.val();  // VARNING! Behåller inte sorteringen
+                snapshot.forEach( child => {
+                let objekt = child.val();  // objekten kommer i ordning
+                  //  console.log(objekt);
+                let liTime= document.createElement('li');
+                    liTime.innerHTML= `Sent at ${objekt.time};`
+                     sortedlist.appendChild(liTime);
+                   // sortedDiv.appendChild(liTime);
+                })
+               });
+               
+           });//sortTime event
           
            sortMessage.addEventListener('click',function(event){ 
                
@@ -136,10 +153,10 @@
                 snapshot.forEach( child => {
                 let objekt = child.val();  // objekten kommer i ordning
                   //  console.log(objekt);
-                  let liMessage= document.creatElement('li');
-                    liMessage.innerHTML= "Messages sorted as" +objekt.chatMessage;
+                let liMessage= document.createElement('li');
+                    liMessage.innerHTML= `Messages sorted as + ${objekt.chatMessage};`
                      sortedlist.appendChild(liMessage);
-                    sortedDiv.appendChild(liMessage);
+                   // sortedDiv.appendChild(liMessage);
                 })
                });
                
@@ -174,6 +191,8 @@
              font-size:20px ;
         }
         #sortedDiv { background-color: aliceblue}
+        #sortedlist { background-color: aliceblue;
+        width: 340px}
     </style>
 </head>        
     <body>
@@ -190,6 +209,7 @@
         <br>
         <br>    
             <div id="displayAll"> 
+            <br>    
             <ul id="list"> </ul>
             </div>
         <br>    
@@ -198,10 +218,9 @@
         <br>  
         <br>    
         <button id="sortName"> Sender's Name</button>   
-        <button id="sortDate"> Sort time/Date</button> 
+        <button id="sortTime"> Sort Time</button> 
         <button id="sortMessage"> Sort Message</button> 
         <br>
-            
         <div id="sortedDiv"> </div> 
         <br>
           <ul id="sortedlist"> </ul>  

@@ -117,8 +117,9 @@
                      
                        let li= document.createElement('li'); 
                         li.innerHTML= " From: " + objekt.name ;
-                        sortedlist.appendChild(li);  
-                         sortedDiv.appendChild(li);
+                   
+                       // sortedlist.appendChild(li);  
+                        sortedDiv.appendChild(li);
                         
                 })
             });
@@ -135,12 +136,12 @@
                 snapshot.forEach( child => {
                 let objekt = child.val();  // objekten kommer i ordning
                   //  console.log(objekt);
-                  let li = document.creatElement('li');
-                    li.innerHTML= "Messages sorted as" +objekt.chatMessage;
-                     sortedlist.appendChild(li);
-                    sortedDiv.appendChild(li);
+                  let liMessage= document.creatElement('li');
+                    liMessage.innerHTML= "Messages sorted as" +objekt.chatMessage;
+                     sortedlist.appendChild(liMessage);
+                    sortedDiv.appendChild(liMessage);
                 })
-               })
+               });
                
            });//sortMessage event
     
@@ -202,7 +203,9 @@
         <br>
             
         <div id="sortedDiv"> </div> 
+        <br>
           <ul id="sortedlist"> </ul>  
+          <br>    
         </div>
         
 

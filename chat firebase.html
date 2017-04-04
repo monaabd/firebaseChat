@@ -28,7 +28,10 @@
         
       window.addEventListener('load',function(){
          
-          
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////// Notes: 
+          // i firebase when you want to get in to your object you can user Val() must have()after itself you see it in limitlist btn, //console.log(username.val());
+          //
           
         var input= document.getElementById('userInput'); 
         let loginButton= document.getElementById('loginButton'); 
@@ -108,7 +111,7 @@
           })//logout event
                       
           sortName.addEventListener('click',function(event){
-              
+                  sortedlist.innerHTML=""; 
                  let db = firebase.database();
                  db.ref('username/').orderByChild('name').on('value', function(snapshot) {
                // snapshot.val();  // VARNING! Behåller inte sorteringen
@@ -130,7 +133,7 @@
           
           
            sortTime.addEventListener('click',function(event){ 
-               
+               sortedlist.innerHTML=""; 
                let db = firebase.database();
                
                  db.ref('username/').orderByValue().on('value', function(snapshot) {
@@ -149,6 +152,7 @@
           
            sortMessage.addEventListener('click',function(event){ 
                
+               sortedlist.innerHTML=""; 
                let db = firebase.database();
                 
                  db.ref('username/').orderByChild('chatMessage').on('value', function(snapshot) {

@@ -150,7 +150,7 @@
            sortMessage.addEventListener('click',function(event){ 
                
                let db = firebase.database();
-               
+                
                  db.ref('username/').orderByChild('chatMessage').on('value', function(snapshot) {
                // snapshot.val();  // VARNING! Behåller inte sorteringen
                 snapshot.forEach( child => {
@@ -171,18 +171,22 @@
             // Väljer ut de 2 kortaste dinosaurierna i databasen
            
           limitButton.addEventListener('click',function(event){ 
+            displayAll.innerHTML="";  
             let db = firebase.database();   
-            
             let userrequest= limitlist.value;  
               //console.log(typeof userrequest);
+              
               
            db.ref('username/').limitToFirst(Number(userrequest)).once('value',function(snapshot) {
                // snapshot.val();  // VARNING! Behåller inte sorteringen
                 snapshot.forEach( username =>  {
-                    console.log(username.val());
+                  //  console.log(username.val());
                    
-                    list.innerHTML= " From: " + username.val.name + "  , Message: " +username.val.chatMessage +  "  , At:  "  + username.val.time;
-                   });  
+                    displayAll.innerHTML= `From: ${ username.val().name } Message:${username.val().chatMessage } At: ${username.val().time};`
+
+                      }) //snapshot 
+                   
+                    
                 });// db.ref 
                 
          

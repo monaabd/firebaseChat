@@ -45,7 +45,8 @@
         let sortMessage =document.getElementById('sortMessage');
         let sortedDiv =document.getElementById('sortedDiv');
         let sortedlist= document.getElementById('sortedlist'); 
-          
+        let limitlist= document.getElementById('limitlist'); 
+        let limitButton= document.getElementById('limitButton');  
       //*******************************************************    
           var currentTime = new Date(),
           hours = currentTime.getHours(),
@@ -163,7 +164,29 @@
                });
                
            });//sortMessage event
-    
+          
+         // Antal resultat:
+          //  limitToFirst(limitlist) väljer ut de limit första resultaten.
+          //  limitToLast(limit) väljer ut de limit sista resultaten.
+            // Väljer ut de 2 kortaste dinosaurierna i databasen
+           
+          limitButton.addEventListener('click',function(event){ 
+            let db = firebase.database();   
+            
+            let userrequest= limitlist.value;  
+              //console.log(typeof userrequest);
+              
+           db.ref('username/').limitToFirst(Number(userrequest)).once('value',function(snapshot) {
+               // snapshot.val();  // VARNING! Behåller inte sorteringen
+                snapshot.forEach( username =>  {
+                    console.log(username.val());
+                   
+                    list.innerHTML= " From: " + username.val.name + "  , Message: " +username.val.chatMessage +  "  , At:  "  + username.val.time;
+                   });  
+                });// db.ref 
+                
+         
+               }); //limitlist event
           
      }) ;//windows load             
     </script>
@@ -227,8 +250,11 @@
         <br>
           <ul id="sortedlist"> </ul>  
           <br>    
+       <input id="limitlist" placeholder="How many would you like to see"> 
+        <button id="limitButton"> Show Now </button>    
         </div>
         
 
  </body>
  </html>
+

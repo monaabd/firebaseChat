@@ -173,17 +173,18 @@
           limitButton.addEventListener('click',function(event){ 
             displayAll.innerHTML="";  
             let db = firebase.database();   
-            let userrequest= limitlist.value;  
+            let userrequest= Number(limitlist.value);  
               //console.log(typeof userrequest);
+             
               
               
-           db.ref('username/').limitToFirst(Number(userrequest)).once('value',function(snapshot) {
+           db.ref('username/').limitToFirst(userrequest).once('value',function(snapshot) {
                // snapshot.val();  // VARNING! Behåller inte sorteringen
                 snapshot.forEach( username =>  {
-                  //  console.log(username.val());
-                   
-                    displayAll.innerHTML= `From: ${ username.val().name } Message:${username.val().chatMessage } At: ${username.val().time};`
-
+                  console.log(username.val());
+                    let li= document.createElement('li');
+                    li.innerHTML= `From: ${ username.val().name } Message:${username.val().chatMessage } At: ${username.val().time};`
+                     displayAll.appendChild(li);
                       }) //snapshot 
                    
                     

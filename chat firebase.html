@@ -66,6 +66,7 @@
     //access to database  
             
              firebase.database().ref('username/').push({ 
+                 
                  name: userName,
                  chatMessage: chatMessage,  
                  time: hours + ":" + minutes +"" 
@@ -81,7 +82,8 @@
               firebase.database().ref('username/').on('value',function(snapshot){
           //******** firebase sorting
                   
-           //*******************************************       
+           //*******************************************  
+                  limitlist.value="";
                  let dataObject = snapshot.val();
                   //console.log(dataObject);
                   
@@ -175,14 +177,13 @@
             // Väljer ut de 2 kortaste dinosaurierna i databasen
            
           limitButton.addEventListener('click',function(event){ 
+           
             displayAll.innerHTML="";  
             let db = firebase.database();   
             let userrequest= Number(limitlist.value);  
               //console.log(typeof userrequest);
              
-              
-              
-           db.ref('username/').limitToFirst(userrequest).once('value',function(snapshot) {
+            db.ref('username/').limitToFirst(userrequest).once('value',function(snapshot) {
                // snapshot.val();  // VARNING! Behåller inte sorteringen
                 snapshot.forEach( username =>  {
                   console.log(username.val());
